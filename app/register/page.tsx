@@ -94,6 +94,32 @@ type FormData = {
   branch: string;
 };
 
+const Field = ({
+  id,
+  label,
+  required,
+  error,
+  children,
+}: {
+  id: string;
+  label: string;
+  required?: boolean;
+  error?: string;
+  children: React.ReactNode;
+}) => (
+  <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+    <label htmlFor={id} style={labelStyle}>
+      {label} {required && <span style={{ color: "#f5c518" }}>*</span>}
+    </label>
+    {children}
+    {error && (
+      <span style={{ ...mono, color: "#e89a8e", fontSize: 12.5 }}>
+        {error}
+      </span>
+    )}
+  </div>
+);
+
 export default function RegisterPage() {
   const [form, setForm] = useState<FormData>({
     fullname: "",
@@ -166,32 +192,6 @@ export default function RegisterPage() {
           return n;
         });
     };
-
-  const Field = ({
-    id,
-    label,
-    required,
-    error,
-    children,
-  }: {
-    id: string;
-    label: string;
-    required?: boolean;
-    error?: string;
-    children: React.ReactNode;
-  }) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-      <label htmlFor={id} style={labelStyle}>
-        {label} {required && <span style={{ color: "#f5c518" }}>*</span>}
-      </label>
-      {children}
-      {error && (
-        <span style={{ ...mono, color: "#e89a8e", fontSize: 12.5 }}>
-          {error}
-        </span>
-      )}
-    </div>
-  );
 
   return (
     <PageLayout>
