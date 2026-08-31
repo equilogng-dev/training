@@ -18,7 +18,7 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
     );
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -156,7 +156,9 @@ export default function Home() {
   useReveal();
 
   return (
-    <div style={{ background: "#0c0c0d", color: "#f4f3ef", minHeight: "100vh" }}>
+    <div
+      style={{ background: "#0c0c0d", color: "#f4f3ef", minHeight: "100vh" }}
+    >
       <SiteHeader />
 
       {/* ─── HERO ─── */}
@@ -170,7 +172,7 @@ export default function Home() {
         {/* Background image */}
         <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
           <Image
-            src="/img/doc06.jpeg"
+            src="/img/hero.jpg"
             alt="Mobile crane operator training on a Lagos worksite"
             fill
             priority
@@ -230,9 +232,9 @@ export default function Home() {
               margin: "26px 0 34px",
             }}
           >
-            Hands-on operator training on real cranes, excavators, forklifts and reach
-            stackers — backed by globally recognised certification that gets you hired, in
-            Nigeria and abroad.
+            Hands-on operator training on real cranes, excavators, forklifts and
+            reach stackers — backed by globally recognised certification that
+            gets you hired, in Nigeria and abroad.
           </p>
 
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
@@ -315,9 +317,21 @@ export default function Home() {
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
             {[
-              { seal: "IADC", name: "IADC", sub: "Intl. Assoc. of Drilling Contractors — USA" },
-              { seal: "OSHA", name: "OSHA", sub: "Occupational Safety & Health — U.K." },
-              { seal: "HHT", name: "HardHat", sub: "Training Institute — Canada · Spain · USA" },
+              {
+                seal: "IADC",
+                name: "IADC",
+                sub: "Intl. Assoc. of Drilling Contractors — USA",
+              },
+              {
+                seal: "OSHA",
+                name: "OSHA",
+                sub: "Occupational Safety & Health — U.K.",
+              },
+              {
+                seal: "HHT",
+                name: "HardHat",
+                sub: "Training Institute — Canada · Spain · USA",
+              },
             ].map(({ seal, name, sub }) => (
               <div
                 key={seal}
@@ -384,7 +398,10 @@ export default function Home() {
       {/* ─── COURSES PREVIEW ─── */}
       <section style={sectionPadding}>
         <div style={wrap}>
-          <div className="reveal" style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}>
+          <div
+            className="reveal"
+            style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}
+          >
             <span className="eq-kicker">Featured Courses</span>
             <h2
               style={{
@@ -508,7 +525,14 @@ export default function Home() {
                   >
                     {course.desc}
                   </p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 18 }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: 8,
+                      marginBottom: 18,
+                    }}
+                  >
                     <span
                       style={{
                         fontFamily: "var(--font-ibm-plex-mono), monospace",
@@ -520,7 +544,9 @@ export default function Home() {
                         borderRadius: 3,
                       }}
                     >
-                      <b style={{ color: "#f4f3ef", fontWeight: 600 }}>{course.duration}</b>{" "}
+                      <b style={{ color: "#f4f3ef", fontWeight: 600 }}>
+                        {course.duration}
+                      </b>{" "}
                       {course.duration === "Custom" ? "duration" : "weeks"}
                     </span>
                     <span
@@ -611,7 +637,10 @@ export default function Home() {
         }}
       >
         <div style={wrap}>
-          <div className="reveal" style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}>
+          <div
+            className="reveal"
+            style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}
+          >
             <span className="eq-kicker">Why Equilog</span>
             <h2
               style={{
@@ -644,7 +673,13 @@ export default function Home() {
             {[
               {
                 icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" style={{ width: 42, height: 42 }}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    style={{ width: 42, height: 42 }}
+                  >
                     <path d="M12 3l8 4v5c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V7l8-4z" />
                     <path d="M9 12l2 2 4-4" />
                   </svg>
@@ -654,7 +689,13 @@ export default function Home() {
               },
               {
                 icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" style={{ width: 42, height: 42 }}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    style={{ width: 42, height: 42 }}
+                  >
                     <path d="M3 17h2l1-4h7l2 4h6" />
                     <circle cx="7" cy="19" r="1.7" />
                     <circle cx="17" cy="19" r="1.7" />
@@ -666,7 +707,13 @@ export default function Home() {
               },
               {
                 icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" style={{ width: 42, height: 42 }}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    style={{ width: 42, height: 42 }}
+                  >
                     <circle cx="9" cy="8" r="3.2" />
                     <path d="M3.5 19c.5-3 2.8-4.5 5.5-4.5S14 16 14.5 19" />
                     <path d="M16 11l2 2 3.5-3.5" />
@@ -677,7 +724,13 @@ export default function Home() {
               },
               {
                 icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" style={{ width: 42, height: 42 }}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    style={{ width: 42, height: 42 }}
+                  >
                     <path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z" />
                     <circle cx="12" cy="10" r="2.5" />
                   </svg>
@@ -706,7 +759,9 @@ export default function Home() {
                 >
                   {title}
                 </h3>
-                <p style={{ color: "#8e8e88", fontSize: 15, margin: 0 }}>{text}</p>
+                <p style={{ color: "#8e8e88", fontSize: 15, margin: 0 }}>
+                  {text}
+                </p>
               </div>
             ))}
           </div>
@@ -729,9 +784,11 @@ export default function Home() {
           }}
         >
           {/* Image */}
-          <div style={{ position: "relative", minHeight: 380, overflow: "hidden" }}>
+          <div
+            style={{ position: "relative", minHeight: 380, overflow: "hidden" }}
+          >
             <Image
-              src="/img/doc14.jpeg"
+              src="/img/mastery.jpg"
               alt="Excavator and haul truck on a practical training site"
               fill
               style={{ objectFit: "cover" }}
@@ -763,9 +820,10 @@ export default function Home() {
                 marginBottom: 26,
               }}
             >
-              We don&apos;t teach operators from a textbook alone. Multimedia theory and
-              interactive discussion lead into supervised practical sessions on live
-              equipment — so you graduate confident, certified and ready for the job site.
+              We don&apos;t teach operators from a textbook alone. Multimedia
+              theory and interactive discussion lead into supervised practical
+              sessions on live equipment — so you graduate confident, certified
+              and ready for the job site.
             </p>
             <ul
               style={{
@@ -782,7 +840,10 @@ export default function Home() {
                 "Inspection, maintenance & pre-operation checks",
                 "Certification & licence presentation",
               ].map((item, i) => (
-                <li key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                <li
+                  key={i}
+                  style={{ display: "flex", gap: 12, alignItems: "flex-start" }}
+                >
                   <span
                     style={{
                       color: "#f5c518",
@@ -842,9 +903,9 @@ export default function Home() {
                   marginBottom: 28,
                 }}
               >
-                Need to certify your personnel, train a crew of operators, or acquire vetted
-                talent? Our corporate desk connects you with the solution to deliver real
-                value on site.
+                Need to certify your personnel, train a crew of operators, or
+                acquire vetted talent? Our corporate desk connects you with the
+                solution to deliver real value on site.
               </p>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
                 <Link href="/contact" style={btnPrimary}>
@@ -855,7 +916,13 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div style={{ position: "relative", minHeight: 380, overflow: "hidden" }}>
+            <div
+              style={{
+                position: "relative",
+                minHeight: 380,
+                overflow: "hidden",
+              }}
+            >
               <Image
                 src="/img/doc02.jpeg"
                 alt="Corporate training session at Equilog"
@@ -934,8 +1001,8 @@ export default function Home() {
               margin: "18px 0 30px",
             }}
           >
-            New batches enrol on Mondays, Wednesdays and Fridays. Not sure which programme
-            fits you? Call our team for a free guide.
+            New batches enrol on Mondays, Wednesdays and Fridays. Not sure which
+            programme fits you? Call our team for a free guide.
           </p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
             <Link href="/register" style={btnDarkLg}>
