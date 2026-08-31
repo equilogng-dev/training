@@ -153,7 +153,10 @@ const LOCATIONS = [
   { equipment: "Forklift", location: "Classic Terminal, by Ojo Barracks" },
   { equipment: "Excavator", location: "Agboju, Lagos" },
   { equipment: "Crane", location: "Jojo Terminal, opp. Ojo Barracks" },
-  { equipment: "Reach Stacker", location: "Jojo Terminal · 2nd Rainbow, Oshodi-Apapa Expressway" },
+  {
+    equipment: "Reach Stacker",
+    location: "Jojo Terminal · 2nd Rainbow, Oshodi-Apapa Expressway",
+  },
   { equipment: "Truck Driving", location: "Ibeju-Lekki, Lagos" },
   { equipment: "Pay Loader", location: "Mainland, Agboju" },
 ];
@@ -170,9 +173,15 @@ export default function CoursesPage() {
         title="Operator Courses"
         lead="Eight hands-on programmes across cranes, earth-moving and material-handling equipment. Every course blends multimedia theory with supervised practical hours and ends in globally recognised certification."
       >
-        <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 26 }}>
-          <Link href="/register" style={btnPrimary}>Register &amp; save ₦20,000</Link>
-          <a href="tel:08088212999" style={btnGhost}>Free programme guide</a>
+        <div
+          style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 26 }}
+        >
+          <Link href="/register" style={btnPrimary}>
+            Register &amp; save ₦20,000
+          </Link>
+          <a href="tel:08088212999" style={btnGhost}>
+            Free programme guide
+          </a>
         </div>
       </PageHeader>
 
@@ -219,7 +228,8 @@ export default function CoursesPage() {
                       style={{
                         position: "absolute",
                         inset: 0,
-                        background: "repeating-linear-gradient(45deg,#161618 0 11px,#1b1b1e 11px 22px)",
+                        background:
+                          "repeating-linear-gradient(45deg,#161618 0 11px,#1b1b1e 11px 22px)",
                         display: "grid",
                         placeItems: "center",
                         color: "#6a6a64",
@@ -244,7 +254,14 @@ export default function CoursesPage() {
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 12,
+                      marginBottom: 16,
+                    }}
+                  >
                     <span
                       style={{
                         ...mono,
@@ -289,7 +306,13 @@ export default function CoursesPage() {
                     {course.title}
                   </h2>
 
-                  <p style={{ color: "#c7c6c0", fontSize: 15.5, marginBottom: 0 }}>
+                  <p
+                    style={{
+                      color: "#c7c6c0",
+                      fontSize: 15.5,
+                      marginBottom: 0,
+                    }}
+                  >
                     {course.desc}
                   </p>
 
@@ -312,7 +335,10 @@ export default function CoursesPage() {
                       ["Duration", course.duration],
                       ["Format", course.format],
                     ].map(([k, v]) => (
-                      <div key={k} style={{ background: "#0c0c0d", padding: "14px 16px" }}>
+                      <div
+                        key={k}
+                        style={{ background: "#0c0c0d", padding: "14px 16px" }}
+                      >
                         <div
                           style={{
                             ...mono,
@@ -338,7 +364,15 @@ export default function CoursesPage() {
                     ))}
                   </div>
 
-                  <div style={{ marginTop: "auto", display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+                  <div
+                    style={{
+                      marginTop: "auto",
+                      display: "flex",
+                      gap: 12,
+                      flexWrap: "wrap",
+                      alignItems: "center",
+                    }}
+                  >
                     <Link href="/register" style={btnPrimary}>
                       Register <span>→</span>
                     </Link>
@@ -363,7 +397,10 @@ export default function CoursesPage() {
         }}
       >
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 28px" }}>
-          <div className="reveal" style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}>
+          <div
+            className="reveal"
+            style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}
+          >
             <span
               style={{
                 fontFamily: "var(--font-oswald), sans-serif",
@@ -442,7 +479,8 @@ export default function CoursesPage() {
               fontSize: 13,
             }}
           >
-            Training days — Mondays, Wednesdays &amp; Fridays · Branches in Lagos, Abuja &amp; Benin
+            Training days — Mondays, Wednesdays &amp; Fridays · Branches in
+            Lagos, Abuja &amp; Benin
           </p>
         </div>
       </section>
@@ -451,7 +489,7 @@ export default function CoursesPage() {
         kicker="★ Not sure which course?"
         heading="Call us for a free programme guide."
         lead="We'll help you pick the right machine, timeline and certification for your goals."
-        primaryLabel="Call 0808 8821 2999"
+        primaryLabel="Call 0808 882 1299"
         primaryHref="tel:08088212999"
         secondaryLabel="Register online"
         secondaryHref="/register"

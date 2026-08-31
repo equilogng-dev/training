@@ -97,7 +97,10 @@ export default function CertificationPage() {
       {/* Certification bodies */}
       <section style={{ padding: "clamp(64px,8vw,120px) 0" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 28px" }}>
-          <div className="reveal" style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}>
+          <div
+            className="reveal"
+            style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}
+          >
             <span className="eq-kicker">Globally Recognised</span>
             <h2
               style={{
@@ -166,10 +169,20 @@ export default function CertificationPage() {
                 >
                   {name}
                 </h3>
-                <p style={{ ...mono, fontSize: 12, color: "#8e8e88", margin: 0, letterSpacing: "0.04em" }}>
+                <p
+                  style={{
+                    ...mono,
+                    fontSize: 12,
+                    color: "#8e8e88",
+                    margin: 0,
+                    letterSpacing: "0.04em",
+                  }}
+                >
                   {reg}
                 </p>
-                <p style={{ color: "#c7c6c0", fontSize: 15, margin: 0 }}>{desc}</p>
+                <p style={{ color: "#c7c6c0", fontSize: 15, margin: 0 }}>
+                  {desc}
+                </p>
               </div>
             ))}
           </div>
@@ -198,7 +211,10 @@ export default function CertificationPage() {
         }}
       >
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 28px" }}>
-          <div className="reveal" style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}>
+          <div
+            className="reveal"
+            style={{ maxWidth: 720, marginBottom: "clamp(34px,4vw,52px)" }}
+          >
             <span className="eq-kicker">Pathways</span>
             <h2
               style={{
@@ -227,7 +243,10 @@ export default function CertificationPage() {
             }}
           >
             {PATHS.map(({ n, title, desc }) => (
-              <div key={n} style={{ background: "#141416", padding: "34px 28px" }}>
+              <div
+                key={n}
+                style={{ background: "#141416", padding: "34px 28px" }}
+              >
                 <div
                   style={{
                     ...mono,
@@ -251,7 +270,9 @@ export default function CertificationPage() {
                 >
                   {title}
                 </h3>
-                <p style={{ color: "#8e8e88", fontSize: 15, margin: 0 }}>{desc}</p>
+                <p style={{ color: "#8e8e88", fontSize: 15, margin: 0 }}>
+                  {desc}
+                </p>
               </div>
             ))}
           </div>
@@ -273,7 +294,9 @@ export default function CertificationPage() {
             alignItems: "stretch",
           }}
         >
-          <div style={{ position: "relative", minHeight: 380, overflow: "hidden" }}>
+          <div
+            style={{ position: "relative", minHeight: 380, overflow: "hidden" }}
+          >
             <Image
               src="/img/doc10.jpeg"
               alt="Operators receiving certificates"
@@ -305,14 +328,19 @@ export default function CertificationPage() {
                 marginBottom: 26,
               }}
             >
-              If you&apos;re a skilled operator without formal certification, you don&apos;t have
-              to start from scratch. Undertake a focused fresher course — online, in person, or
-              in class — and earn a globally recognised certificate that proves your competence to
-              any employer.
+              If you&apos;re a skilled operator without formal certification,
+              you don&apos;t have to start from scratch. Undertake a focused
+              fresher course — online, in person, or in class — and earn a
+              globally recognised certificate that proves your competence to any
+              employer.
             </p>
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <Link href="/contact" style={btnPrimary}>Start a fresher course</Link>
-              <Link href="/verify" style={btnGhost}>Verify a certificate</Link>
+              <Link href="/contact" style={btnPrimary}>
+                Start a fresher course
+              </Link>
+              <Link href="/verify" style={btnGhost}>
+                Verify a certificate
+              </Link>
             </div>
           </div>
         </div>
@@ -322,7 +350,7 @@ export default function CertificationPage() {
         kicker="★ Talk to us"
         heading="Let's connect you with the right certification."
         lead="Call or email and we'll help you serve your needs."
-        primaryLabel="Call 0808 8821 2999"
+        primaryLabel="Call 0808 882 1299"
         primaryHref="tel:08088212999"
         secondaryLabel="info@equilog.com.ng"
         secondaryHref="mailto:info@equilog.com.ng"

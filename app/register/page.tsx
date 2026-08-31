@@ -5,7 +5,9 @@ import Link from "next/link";
 import { PageLayout } from "@/components/page-layout";
 import { PageHeader } from "@/components/page-header";
 
-const mono: React.CSSProperties = { fontFamily: "var(--font-ibm-plex-mono), monospace" };
+const mono: React.CSSProperties = {
+  fontFamily: "var(--font-ibm-plex-mono), monospace",
+};
 
 const inputStyle: React.CSSProperties = {
   background: "#0c0c0d",
@@ -28,15 +30,54 @@ const labelStyle: React.CSSProperties = {
 };
 
 const STATES = [
-  "Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno","Cross River",
-  "Delta","Ebonyi","Edo","Ekiti","Enugu","FCT - Abuja","Gombe","Imo","Jigawa","Kaduna","Kano",
-  "Katsina","Kebbi","Kogi","Kwara","Lagos","Nasarawa","Niger","Ogun","Ondo","Osun","Oyo",
-  "Plateau","Rivers","Sokoto","Taraba","Yobe","Zamfara",
+  "Abia",
+  "Adamawa",
+  "Akwa Ibom",
+  "Anambra",
+  "Bauchi",
+  "Bayelsa",
+  "Benue",
+  "Borno",
+  "Cross River",
+  "Delta",
+  "Ebonyi",
+  "Edo",
+  "Ekiti",
+  "Enugu",
+  "FCT - Abuja",
+  "Gombe",
+  "Imo",
+  "Jigawa",
+  "Kaduna",
+  "Kano",
+  "Katsina",
+  "Kebbi",
+  "Kogi",
+  "Kwara",
+  "Lagos",
+  "Nasarawa",
+  "Niger",
+  "Ogun",
+  "Ondo",
+  "Osun",
+  "Oyo",
+  "Plateau",
+  "Rivers",
+  "Sokoto",
+  "Taraba",
+  "Yobe",
+  "Zamfara",
 ];
 
 const COURSES = [
-  "Crane Operator","Excavator Operator","Forklift Operator","Reach Stacker",
-  "Basic Rigging","Commercial Truck Driving","Wheel Loader Operator","Safety in Construction",
+  "Crane Operator",
+  "Excavator Operator",
+  "Forklift Operator",
+  "Reach Stacker",
+  "Basic Rigging",
+  "Commercial Truck Driving",
+  "Wheel Loader Operator",
+  "Safety in Construction",
 ];
 
 type FormData = {
@@ -54,19 +95,33 @@ type FormData = {
 
 export default function RegisterPage() {
   const [form, setForm] = useState<FormData>({
-    fullname: "", dob: "", sex: "", tel: "", email: "",
-    address: "", state: "", course: "", courseType: "", branch: "Lagos",
+    fullname: "",
+    dob: "",
+    sex: "",
+    tel: "",
+    email: "",
+    address: "",
+    state: "",
+    course: "",
+    courseType: "",
+    branch: "Lagos",
   });
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
-  const [success, setSuccess] = useState<{ name: string; ref: string } | null>(null);
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>(
+    {},
+  );
+  const [success, setSuccess] = useState<{ name: string; ref: string } | null>(
+    null,
+  );
 
   function validate() {
     const errs: Partial<Record<keyof FormData, string>> = {};
     if (!form.fullname.trim()) errs.fullname = "Please enter your full name.";
     if (!form.dob) errs.dob = "Please enter your date of birth.";
     if (!form.sex) errs.sex = "Please select.";
-    if (!form.tel.trim() || form.tel.replace(/\D/g, "").length < 7) errs.tel = "Please enter a valid phone number.";
-    if (form.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) errs.email = "Please enter a valid email.";
+    if (!form.tel.trim() || form.tel.replace(/\D/g, "").length < 7)
+      errs.tel = "Please enter a valid phone number.";
+    if (form.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email))
+      errs.email = "Please enter a valid email.";
     if (!form.address.trim()) errs.address = "Please enter your address.";
     if (!form.state) errs.state = "Please select your state.";
     if (!form.course) errs.course = "Please choose a course.";
@@ -86,20 +141,41 @@ export default function RegisterPage() {
     }
   }
 
-  const set = (k: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm((f) => ({ ...f, [k]: e.target.value }));
-    if (errors[k]) setErrors((err) => { const n = { ...err }; delete n[k]; return n; });
-  };
+  const set =
+    (k: keyof FormData) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      setForm((f) => ({ ...f, [k]: e.target.value }));
+      if (errors[k])
+        setErrors((err) => {
+          const n = { ...err };
+          delete n[k];
+          return n;
+        });
+    };
 
-  const Field = ({ id, label, required, error, children }: {
-    id: string; label: string; required?: boolean; error?: string; children: React.ReactNode;
+  const Field = ({
+    id,
+    label,
+    required,
+    error,
+    children,
+  }: {
+    id: string;
+    label: string;
+    required?: boolean;
+    error?: string;
+    children: React.ReactNode;
   }) => (
     <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
       <label htmlFor={id} style={labelStyle}>
         {label} {required && <span style={{ color: "#f5c518" }}>*</span>}
       </label>
       {children}
-      {error && <span style={{ ...mono, color: "#e89a8e", fontSize: 12.5 }}>{error}</span>}
+      {error && (
+        <span style={{ ...mono, color: "#e89a8e", fontSize: 12.5 }}>
+          {error}
+        </span>
+      )}
     </div>
   );
 
@@ -111,8 +187,8 @@ export default function RegisterPage() {
         lead={
           <>
             Reserve your seat in the next batch and automatically claim{" "}
-            <strong style={{ color: "#f5c518" }}>₦20,000 off</strong> your course. New batches
-            start Mondays, Wednesdays and Fridays.
+            <strong style={{ color: "#f5c518" }}>₦20,000 off</strong> your
+            course. New batches start Mondays, Wednesdays and Fridays.
           </>
         }
       />
@@ -121,7 +197,12 @@ export default function RegisterPage() {
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 28px" }}>
           <div
             className="reg-grid"
-            style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 40, alignItems: "start" }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 360px",
+              gap: 40,
+              alignItems: "start",
+            }}
           >
             {/* Form card */}
             <div
@@ -148,7 +229,14 @@ export default function RegisterPage() {
                       color: "#5cc98b",
                     }}
                   >
-                    <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" strokeWidth="2.4">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="38"
+                      height="38"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.4"
+                    >
                       <path d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -164,10 +252,17 @@ export default function RegisterPage() {
                   >
                     Registration received
                   </h2>
-                  <p style={{ color: "#8e8e88", maxWidth: "42ch", margin: "0 auto" }}>
-                    Thank you, <strong style={{ color: "#f4f3ef" }}>{success.name}</strong>. Our
-                    admissions team will call you to confirm your seat and payment. Your ₦20,000
-                    online discount is locked in.
+                  <p
+                    style={{
+                      color: "#8e8e88",
+                      maxWidth: "42ch",
+                      margin: "0 auto",
+                    }}
+                  >
+                    Thank you,{" "}
+                    <strong style={{ color: "#f4f3ef" }}>{success.name}</strong>
+                    . Our admissions team will call you to confirm your seat and
+                    payment. Your ₦20,000 online discount is locked in.
                   </p>
                   <div
                     style={{
@@ -185,7 +280,14 @@ export default function RegisterPage() {
                   >
                     {success.ref}
                   </div>
-                  <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 14,
+                      justifyContent: "center",
+                      flexWrap: "wrap",
+                    }}
+                  >
                     <Link
                       href="/courses"
                       style={{
@@ -206,7 +308,22 @@ export default function RegisterPage() {
                       Browse courses
                     </Link>
                     <button
-                      onClick={() => { setSuccess(null); setForm({ fullname: "", dob: "", sex: "", tel: "", email: "", address: "", state: "", course: "", courseType: "", branch: "Lagos" }); setErrors({}); }}
+                      onClick={() => {
+                        setSuccess(null);
+                        setForm({
+                          fullname: "",
+                          dob: "",
+                          sex: "",
+                          tel: "",
+                          email: "",
+                          address: "",
+                          state: "",
+                          course: "",
+                          courseType: "",
+                          branch: "Lagos",
+                        });
+                        setErrors({});
+                      }}
                       style={{
                         display: "inline-flex",
                         fontFamily: "var(--font-oswald), sans-serif",
@@ -240,20 +357,80 @@ export default function RegisterPage() {
                   >
                     Trainee details
                   </h3>
-                  <p style={{ color: "#8e8e88", fontSize: 14, margin: "0 0 6px" }}>
-                    Fields marked <span style={{ color: "#f5c518" }}>*</span> are required.
+                  <p
+                    style={{
+                      color: "#8e8e88",
+                      fontSize: 14,
+                      margin: "0 0 6px",
+                    }}
+                  >
+                    Fields marked <span style={{ color: "#f5c518" }}>*</span>{" "}
+                    are required.
                   </p>
-                  <form onSubmit={handleSubmit} style={{ display: "grid", gap: 18, marginTop: 18 }} noValidate>
-                    <Field id="fullname" label="Full name" required error={errors.fullname}>
-                      <input id="fullname" value={form.fullname} onChange={set("fullname")} placeholder="e.g. Chidi Okafor" style={{ ...inputStyle, borderColor: errors.fullname ? "#e06b5b" : "rgba(255,255,255,0.16)" }} />
+                  <form
+                    onSubmit={handleSubmit}
+                    style={{ display: "grid", gap: 18, marginTop: 18 }}
+                    noValidate
+                  >
+                    <Field
+                      id="fullname"
+                      label="Full name"
+                      required
+                      error={errors.fullname}
+                    >
+                      <input
+                        id="fullname"
+                        value={form.fullname}
+                        onChange={set("fullname")}
+                        placeholder="e.g. Chidi Okafor"
+                        style={{
+                          ...inputStyle,
+                          borderColor: errors.fullname
+                            ? "#e06b5b"
+                            : "rgba(255,255,255,0.16)",
+                        }}
+                      />
                     </Field>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }} className="form-row">
-                      <Field id="dob" label="Date of birth" required error={errors.dob}>
-                        <input id="dob" type="date" value={form.dob} onChange={set("dob")} style={{ ...inputStyle, borderColor: errors.dob ? "#e06b5b" : "rgba(255,255,255,0.16)" }} />
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: 18,
+                      }}
+                      className="form-row"
+                    >
+                      <Field
+                        id="dob"
+                        label="Date of birth"
+                        required
+                        error={errors.dob}
+                      >
+                        <input
+                          id="dob"
+                          type="date"
+                          value={form.dob}
+                          onChange={set("dob")}
+                          style={{
+                            ...inputStyle,
+                            borderColor: errors.dob
+                              ? "#e06b5b"
+                              : "rgba(255,255,255,0.16)",
+                          }}
+                        />
                       </Field>
                       <Field id="sex" label="Sex" required error={errors.sex}>
-                        <select id="sex" value={form.sex} onChange={set("sex")} style={{ ...inputStyle, borderColor: errors.sex ? "#e06b5b" : "rgba(255,255,255,0.16)" }}>
+                        <select
+                          id="sex"
+                          value={form.sex}
+                          onChange={set("sex")}
+                          style={{
+                            ...inputStyle,
+                            borderColor: errors.sex
+                              ? "#e06b5b"
+                              : "rgba(255,255,255,0.16)",
+                          }}
+                        >
                           <option value="">Select…</option>
                           <option>Male</option>
                           <option>Female</option>
@@ -261,35 +438,140 @@ export default function RegisterPage() {
                       </Field>
                     </div>
 
-                    <Field id="tel" label="Phone number" required error={errors.tel}>
-                      <input id="tel" type="tel" value={form.tel} onChange={set("tel")} placeholder="e.g. 0803 000 0000" style={{ ...inputStyle, borderColor: errors.tel ? "#e06b5b" : "rgba(255,255,255,0.16)" }} />
+                    <Field
+                      id="tel"
+                      label="Phone number"
+                      required
+                      error={errors.tel}
+                    >
+                      <input
+                        id="tel"
+                        type="tel"
+                        value={form.tel}
+                        onChange={set("tel")}
+                        placeholder="e.g. 0803 000 0000"
+                        style={{
+                          ...inputStyle,
+                          borderColor: errors.tel
+                            ? "#e06b5b"
+                            : "rgba(255,255,255,0.16)",
+                        }}
+                      />
                     </Field>
 
-                    <Field id="email" label="Email address" error={errors.email}>
-                      <input id="email" type="email" value={form.email} onChange={set("email")} placeholder="you@email.com" style={{ ...inputStyle, borderColor: errors.email ? "#e06b5b" : "rgba(255,255,255,0.16)" }} />
+                    <Field
+                      id="email"
+                      label="Email address"
+                      error={errors.email}
+                    >
+                      <input
+                        id="email"
+                        type="email"
+                        value={form.email}
+                        onChange={set("email")}
+                        placeholder="you@email.com"
+                        style={{
+                          ...inputStyle,
+                          borderColor: errors.email
+                            ? "#e06b5b"
+                            : "rgba(255,255,255,0.16)",
+                        }}
+                      />
                     </Field>
 
-                    <Field id="address" label="Residential address" required error={errors.address}>
-                      <input id="address" value={form.address} onChange={set("address")} placeholder="Street, area, city" style={{ ...inputStyle, borderColor: errors.address ? "#e06b5b" : "rgba(255,255,255,0.16)" }} />
+                    <Field
+                      id="address"
+                      label="Residential address"
+                      required
+                      error={errors.address}
+                    >
+                      <input
+                        id="address"
+                        value={form.address}
+                        onChange={set("address")}
+                        placeholder="Street, area, city"
+                        style={{
+                          ...inputStyle,
+                          borderColor: errors.address
+                            ? "#e06b5b"
+                            : "rgba(255,255,255,0.16)",
+                        }}
+                      />
                     </Field>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }} className="form-row">
-                      <Field id="state" label="State" required error={errors.state}>
-                        <select id="state" value={form.state} onChange={set("state")} style={{ ...inputStyle, borderColor: errors.state ? "#e06b5b" : "rgba(255,255,255,0.16)" }}>
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: 18,
+                      }}
+                      className="form-row"
+                    >
+                      <Field
+                        id="state"
+                        label="State"
+                        required
+                        error={errors.state}
+                      >
+                        <select
+                          id="state"
+                          value={form.state}
+                          onChange={set("state")}
+                          style={{
+                            ...inputStyle,
+                            borderColor: errors.state
+                              ? "#e06b5b"
+                              : "rgba(255,255,255,0.16)",
+                          }}
+                        >
                           <option value="">Select state…</option>
-                          {STATES.map((s) => <option key={s}>{s}</option>)}
+                          {STATES.map((s) => (
+                            <option key={s}>{s}</option>
+                          ))}
                         </select>
                       </Field>
-                      <Field id="course" label="Course" required error={errors.course}>
-                        <select id="course" value={form.course} onChange={set("course")} style={{ ...inputStyle, borderColor: errors.course ? "#e06b5b" : "rgba(255,255,255,0.16)" }}>
+                      <Field
+                        id="course"
+                        label="Course"
+                        required
+                        error={errors.course}
+                      >
+                        <select
+                          id="course"
+                          value={form.course}
+                          onChange={set("course")}
+                          style={{
+                            ...inputStyle,
+                            borderColor: errors.course
+                              ? "#e06b5b"
+                              : "rgba(255,255,255,0.16)",
+                          }}
+                        >
                           <option value="">Select course…</option>
-                          {COURSES.map((c) => <option key={c}>{c}</option>)}
+                          {COURSES.map((c) => (
+                            <option key={c}>{c}</option>
+                          ))}
                         </select>
                       </Field>
                     </div>
 
-                    <Field id="courseType" label="Course type" required error={errors.courseType}>
-                      <select id="courseType" value={form.courseType} onChange={set("courseType")} style={{ ...inputStyle, borderColor: errors.courseType ? "#e06b5b" : "rgba(255,255,255,0.16)" }}>
+                    <Field
+                      id="courseType"
+                      label="Course type"
+                      required
+                      error={errors.courseType}
+                    >
+                      <select
+                        id="courseType"
+                        value={form.courseType}
+                        onChange={set("courseType")}
+                        style={{
+                          ...inputStyle,
+                          borderColor: errors.courseType
+                            ? "#e06b5b"
+                            : "rgba(255,255,255,0.16)",
+                        }}
+                      >
                         <option value="">Select type…</option>
                         <option value="Beginner">Beginner</option>
                         <option value="Refresher">Refresher</option>
@@ -297,7 +579,12 @@ export default function RegisterPage() {
                     </Field>
 
                     <Field id="branch" label="Preferred branch">
-                      <select id="branch" value={form.branch} onChange={set("branch")} style={inputStyle}>
+                      <select
+                        id="branch"
+                        value={form.branch}
+                        onChange={set("branch")}
+                        style={inputStyle}
+                      >
                         <option>Lagos</option>
                         <option>Abuja</option>
                         <option>Benin</option>
@@ -328,9 +615,16 @@ export default function RegisterPage() {
                       Submit registration →
                     </button>
 
-                    <p style={{ ...mono, color: "#8e8e88", fontSize: 12, margin: "4px 0 0" }}>
-                      By submitting you agree to be contacted by our admissions team. This is a
-                      demo form — no data is sent.
+                    <p
+                      style={{
+                        ...mono,
+                        color: "#8e8e88",
+                        fontSize: 12,
+                        margin: "4px 0 0",
+                      }}
+                    >
+                      By submitting you agree to be contacted by our admissions
+                      team. This is a demo form — no data is sent.
                     </p>
                   </form>
                 </>
@@ -340,7 +634,13 @@ export default function RegisterPage() {
             {/* Sidebar */}
             <aside
               className="reveal reg-side"
-              style={{ position: "sticky", top: 96, display: "flex", flexDirection: "column", gap: 18 }}
+              style={{
+                position: "sticky",
+                top: 96,
+                display: "flex",
+                flexDirection: "column",
+                gap: 18,
+              }}
             >
               {/* Promo card */}
               <div
@@ -380,8 +680,15 @@ export default function RegisterPage() {
                 >
                   ₦20,000 OFF
                 </h3>
-                <p style={{ margin: 0, fontSize: 14.5, color: "rgba(0,0,0,0.75)" }}>
-                  Applied automatically to any operator course when you register online.
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: 14.5,
+                    color: "rgba(0,0,0,0.75)",
+                  }}
+                >
+                  Applied automatically to any operator course when you register
+                  online.
                 </p>
               </div>
 
@@ -405,14 +712,31 @@ export default function RegisterPage() {
                 >
                   What&apos;s included
                 </h3>
-                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 13 }}>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 13,
+                  }}
+                >
                   {[
                     "Multimedia theory & written assessment",
                     "Supervised practical on real machines",
                     "Globally recognised certificate & licence",
                     "Job-recommendation to recruiters",
                   ].map((item) => (
-                    <li key={item} style={{ display: "flex", gap: 11, fontSize: 14.5, color: "#c7c6c0" }}>
+                    <li
+                      key={item}
+                      style={{
+                        display: "flex",
+                        gap: 11,
+                        fontSize: 14.5,
+                        color: "#c7c6c0",
+                      }}
+                    >
                       <span style={{ color: "#f5c518", flexShrink: 0 }}>✓</span>
                       {item}
                     </li>
@@ -440,7 +764,13 @@ export default function RegisterPage() {
                 >
                   Need help?
                 </h3>
-                <p style={{ color: "#8e8e88", fontSize: 14.5, margin: "0 0 14px" }}>
+                <p
+                  style={{
+                    color: "#8e8e88",
+                    fontSize: 14.5,
+                    margin: "0 0 14px",
+                  }}
+                >
                   Call our team for a free programme guide.
                 </p>
                 <a
@@ -461,7 +791,7 @@ export default function RegisterPage() {
                     textDecoration: "none",
                   }}
                 >
-                  0808 8821 2999
+                  0808 882 1299
                 </a>
               </div>
             </aside>

@@ -77,7 +77,13 @@ export default function FaqPage() {
     <PageLayout>
       <PageHeader
         crumb="FAQ"
-        title={<>Frequently Asked<br />Questions</>}
+        title={
+          <>
+            Frequently Asked
+            <br />
+            Questions
+          </>
+        }
         lead="Everything you need to know about training, costs, certification and what happens after you graduate."
       />
 
@@ -157,7 +163,8 @@ export default function FaqPage() {
                         left: "50%",
                         top: "50%",
                         transform: `translate(-50%,-50%) scaleY(${isOpen ? 0 : 1})`,
-                        transition: "transform 0.25s cubic-bezier(0.2,0.7,0.2,1)",
+                        transition:
+                          "transform 0.25s cubic-bezier(0.2,0.7,0.2,1)",
                       }}
                     />
                   </span>
@@ -171,7 +178,11 @@ export default function FaqPage() {
                       fontSize: 16,
                     }}
                   >
-                    {faq.a && <p style={{ margin: faq.list ? "0 0 8px" : 0 }}>{faq.a}</p>}
+                    {faq.a && (
+                      <p style={{ margin: faq.list ? "0 0 8px" : 0 }}>
+                        {faq.a}
+                      </p>
+                    )}
                     {faq.list && (
                       <ul style={{ margin: "0.4em 0", paddingLeft: 18 }}>
                         {faq.list.map((item) => (
@@ -191,7 +202,7 @@ export default function FaqPage() {
         kicker="★ Still have questions?"
         heading="Our team is one call away."
         lead="Reach us for anything we haven't covered here."
-        primaryLabel="Call 0808 8821 2999"
+        primaryLabel="Call 0808 882 1299"
         primaryHref="tel:08088212999"
         secondaryLabel="Contact us"
         secondaryHref="/contact"
