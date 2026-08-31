@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { PageLayout } from "@/components/page-layout";
 import { PageHeader } from "@/components/page-header";
+import { registerTrainee } from "./actions";
 
 const mono: React.CSSProperties = {
   fontFamily: "var(--font-ibm-plex-mono), monospace",
@@ -112,6 +113,9 @@ export default function RegisterPage() {
   const [success, setSuccess] = useState<{ name: string; ref: string } | null>(
     null,
   );
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [dobResetKey, setDobResetKey] = useState(0);
 
   function validate() {
     const errs: Partial<Record<keyof FormData, string>> = {};
@@ -129,15 +133,25 @@ export default function RegisterPage() {
     return errs;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const errs = validate();
     setErrors(errs);
-    if (Object.keys(errs).length === 0) {
-      setSuccess({
-        name: form.fullname.trim().split(" ")[0] || "trainee",
-        ref: "EQL-" + Math.floor(100000 + Math.random() * 900000),
-      });
+    if (Object.keys(errs).length > 0) return;
+
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const result = await registerTrainee(form);
+      if (result.status === "success") {
+        setSuccess({ name: result.name, ref: result.reference });
+      } else {
+        setErrors(result.errors);
+      }
+    } catch {
+      setSubmitError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -323,6 +337,7 @@ export default function RegisterPage() {
                           branch: "Lagos",
                         });
                         setErrors({});
+                        setDobResetKey((k) => k + 1);
                       }}
                       style={{
                         display: "inline-flex",
@@ -407,9 +422,10 @@ export default function RegisterPage() {
                         error={errors.dob}
                       >
                         <input
+                          key={dobResetKey}
                           id="dob"
                           type="date"
-                          value={form.dob}
+                          defaultValue={form.dob}
                           onChange={set("dob")}
                           style={{
                             ...inputStyle,
@@ -591,8 +607,22 @@ export default function RegisterPage() {
                       </select>
                     </Field>
 
+                    {submitError && (
+                      <p
+                        style={{
+                          ...mono,
+                          color: "#e89a8e",
+                          fontSize: 13,
+                          margin: 0,
+                        }}
+                      >
+                        {submitError}
+                      </p>
+                    )}
+
                     <button
                       type="submit"
+                      disabled={submitting}
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
@@ -608,11 +638,12 @@ export default function RegisterPage() {
                         border: "1px solid #f5c518",
                         background: "#f5c518",
                         color: "#0a0a0a",
-                        cursor: "pointer",
+                        cursor: submitting ? "default" : "pointer",
+                        opacity: submitting ? 0.65 : 1,
                         marginTop: 8,
                       }}
                     >
-                      Submit registration →
+                      {submitting ? "Submitting…" : "Submit registration →"}
                     </button>
 
                     <p
@@ -624,7 +655,7 @@ export default function RegisterPage() {
                       }}
                     >
                       By submitting you agree to be contacted by our admissions
-                      team. This is a demo form — no data is sent.
+                      team.
                     </p>
                   </form>
                 </>

@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./node_modules/.bin/prisma --version)",
+      "Bash(./node_modules/.bin/prisma --help)",
+      "Bash(./node_modules/.bin/prisma init *)",
+      "Bash(./node_modules/.bin/prisma orm *)",
+      "Bash(./node_modules/.bin/prisma contract *)",
+      "Bash(./node_modules/.bin/prisma db *)",
+      "Bash(./node_modules/.bin/prisma migration *)",
+      "Bash(grep -i \"string$\")",
+      "Bash(node -e \"const {z}=require\\('zod'\\); console.log\\(typeof z.string\\(\\).email\\); console.log\\(typeof z.email\\);\")",
+      "Bash(./node_modules/.bin/tsc --noEmit)",
+      "Bash(grep -oE \"^DATABASE_URL=.{0,30}\" /Users/apple/Documents/rebuild/odinala-next-app/.env)",
+      "Bash(python3 -c ' *)",
+      "Bash(rm -rf /Users/apple/Documents/organizations/equilog/training/prisma)",
+      "Bash(rm -f /Users/apple/Documents/organizations/equilog/training/prisma.config.ts)",
+      "Bash(rm -f /Users/apple/Documents/organizations/equilog/training/prisma-next.md)",
+      "Bash(rm -f /Users/apple/Documents/organizations/equilog/training/.env.example)",
+      "Bash(./node_modules/.bin/prisma generate *)",
+      "Bash(./node_modules/.bin/eslint app/register/page.tsx app/register/actions.ts lib/prisma.ts)",
+      "Bash(./node_modules/.bin/eslint app/register/actions.ts lib/prisma.ts)",
+      "Bash(git -C /Users/apple/Documents/organizations/equilog/training status --short)"
+    ]
+  }
+}
